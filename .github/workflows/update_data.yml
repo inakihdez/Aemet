@@ -18,13 +18,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages('httr')
-          install.packages('dplyr')
-          install.packages('tidyr')
-          install.packages('sf')
-          install.packages('shiny')
-          remotes::install_github("ropensci/climaemet")
-          remotes::install_github("dbosak/datawRappr")
+          Rscript -e 'install.packages(c("httr", "dplyr", "tidyr", "sf", "shiny"))'
+          Rscript -e 'remotes::install_github("ropensci/climaemet")'
+          Rscript -e 'remotes::install_github("dbosak/datawRappr")'
 
       - name: Run update script
         run: Rscript update_data.R
