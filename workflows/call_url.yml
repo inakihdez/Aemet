@@ -1,0 +1,36 @@
+name: Call URL periodically
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Esto ejecuta el trabajo cada hora
+
+jobs:
+  call_url:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install Java
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-jdk
+          java -version
+
+      - name: Install R packages
+        run: |
+          install.packages("RSelenium")
+
+      - name: Run R script
+        run: |
+          Rscript call_url.R
