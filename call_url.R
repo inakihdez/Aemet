@@ -9,7 +9,7 @@ rD <- rsDriver(browser = "chrome", port = 4445L, verbose = FALSE)
 remDr <- rD$client
 
 # Abre una URL
-remDr$navigate("https://www.ejemplo.com")
+remDr$navigate("https://epdata.shinyapps.io/Aemet/?update=true")
 
 # Realiza acciones adicionales si es necesario
 # ...
